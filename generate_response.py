@@ -9,7 +9,7 @@ load_dotenv()
 
 AUTHORIZATION_KEY = os.getenv("AUTHORIZATION_KEY")
 
-MODEL = "GigaChat-2"
+MODEL = "GigaChat-2-Pro"
 TEMPERATURE=0.5
 
 
