@@ -30,8 +30,6 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
     with open("prompt.txt") as fd:
         prompt = fd.read().format(**kwargs)
 
-    print(prompt)
-
     with GigaChat(credentials=AUTHORIZATION_KEY, model=MODEL) as client:
         response = client.chat.create(
             {
