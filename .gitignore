@@ -1,6 +1,7 @@
 .env
 
 *.pyc
+.*.txt
 
 venv/
 __pycache__/
