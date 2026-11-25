@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 
@@ -11,8 +12,9 @@ load_dotenv()
 
 AUTHORIZATION_KEY = os.getenv("AUTHORIZATION_KEY")
 
-MODEL = "GigaChat-2"
+MODEL = "GigaChat-2-Max"
 TEMPERATURE=0.2
+MIN_RELEVANCE=50
 
 
 def generate_response(*, skills_text: str, order_text: str, name: Optional[str] = None) -> None:
@@ -25,7 +27,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
         "skills_text": skills_text,
         "order_text": order_text,
         "name_text": f"Твое имя {name}" if name else "",
-        "min_relevance": 50,
+        "min_relevance": MIN_RELEVANCE,
     }
 
     with open("prompt.txt") as fd:
@@ -41,7 +43,16 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
             }
         )
 
-        print(response.messages[0].content[0].text)
+        try:
+            obj = json.loads(response.messages[0].content[0].text)
+
+            print(f"Релевантность заказа вашим навыкам: {obj['relevance']}")
+            if obj.get('response'):
+                print(obj['response'])
+            else:
+                print("Не следует откликаться на этот заказ")
+        except Exception:
+            print(response.messages[0].content[0].text)
 
 
 if __name__ == "__main__":
