@@ -25,6 +25,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
         "skills_text": skills_text,
         "order_text": order_text,
         "name_text": f"Твое имя {name}" if name else "",
+        "min_relevance": 50,
     }
 
     with open("prompt.txt") as fd:
