@@ -1,7 +1,7 @@
 # Генератор откликов на заказы для бирж фриланса
-**Status**: Production ready
-**Owner**: 38556752+alexitkes@users.noreply.github.com
-**Date**: 2026-11-26
+- **Status**: Production ready
+- **Owner**: 38556752+alexitkes@users.noreply.github.com
+- **Date**: 2026-11-26
 
 ## Краткие сведения
 - **Purpose**: Оценка релевантности заказа навыкам исполнителя, генерация отклика на заказ.
