@@ -47,6 +47,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
             obj = json.loads(response.messages[0].content[0].text, strict=False)
 
             print(f"Релевантность заказа вашим навыкам: {obj['relevance']}")
+            print("------------------------------------------")
             if obj.get('response'):
                 print(obj['response'])
             else:
