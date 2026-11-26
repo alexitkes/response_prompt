@@ -15,6 +15,8 @@ AUTHORIZATION_KEY = os.getenv("AUTHORIZATION_KEY")
 MODEL = "GigaChat-2-Pro"
 TEMPERATURE = 0.2
 MIN_RELEVANCE = 50
+MAX_OUTPUT_CHARS = 4000
+MAX_TOKENS = 2500
 
 
 def generate_response(*, skills_text: str, order_text: str, name: Optional[str] = None) -> None:
@@ -28,6 +30,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
         "order_text": order_text,
         "name_text": f"Твое имя {name}" if name else "",
         "min_relevance": MIN_RELEVANCE,
+        "max_output_chars": MAX_OUTPUT_CHARS,
     }
 
     with open("prompt.txt") as fd:
@@ -40,6 +43,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
                     {"role": "user", "content": prompt},
                 ],
                 "temperature": TEMPERATURE,
+                "max_tokens": MAX_TOKENS,
             }
         )
 
