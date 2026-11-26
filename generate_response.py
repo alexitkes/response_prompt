@@ -12,9 +12,9 @@ load_dotenv()
 
 AUTHORIZATION_KEY = os.getenv("AUTHORIZATION_KEY")
 
-MODEL = "GigaChat-2-Max"
-TEMPERATURE=0.2
-MIN_RELEVANCE=50
+MODEL = "GigaChat-2-Pro"
+TEMPERATURE = 0.2
+MIN_RELEVANCE = 50
 
 
 def generate_response(*, skills_text: str, order_text: str, name: Optional[str] = None) -> None:
@@ -44,7 +44,7 @@ def generate_response(*, skills_text: str, order_text: str, name: Optional[str] 
         )
 
         try:
-            obj = json.loads(response.messages[0].content[0].text)
+            obj = json.loads(response.messages[0].content[0].text, strict=False)
 
             print(f"Релевантность заказа вашим навыкам: {obj['relevance']}")
             if obj.get('response'):
